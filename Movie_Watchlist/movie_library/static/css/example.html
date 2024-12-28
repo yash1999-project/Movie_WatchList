@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Input Fields</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        .input-group input {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .add-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .remove-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Add Dynamic Input Fields</h2>
+
+    <div class="container">
+        <form id="dynamicForm">
+            <div id="inputFields">
+                <!-- Dynamic input fields will be added here -->
+            </div>
+            <button type="button" class="add-btn" onclick="addInputField()">Add Input Field</button>
+        </form>
+    </div>
+
+    <script>
+        let inputCounter = 0;
+
+        function addInputField() {
+            // Increment the input field counter
+            inputCounter++;
+
+            // Create a new div for the input group
+            let inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group';
+
+            // Create an input field
+            let inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.placeholder = `Enter value #${inputCounter}`;
+
+            // Create a remove button
+            let removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.className = 'remove-btn';
+            removeButton.innerText = 'Remove';
+            removeButton.onclick = function () {
+                removeInputField(inputGroup);
+            };
+
+            // Append the input field and remove button to the input group
+            inputGroup.appendChild(inputField);
+            inputGroup.appendChild(removeButton);
+
+            // Append the new input group to the container
+            document.getElementById('inputFields').appendChild(inputGroup);
+        }
+
+        function removeInputField(inputGroup) {
+            // Remove the input field group from the DOM
+            inputGroup.remove();
+        }
+    </script>
+</body>
+
+</html>
